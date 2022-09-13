@@ -39,7 +39,8 @@ const products = [
       "https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg",
     imageAlt:
       "Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.",
-  },{
+  },
+  {
     id: 2,
     name: "Medium Stuff Satchel",
     href: "#",
@@ -62,20 +63,23 @@ export default function Cart({ open, onClose }) {
         {/* Use the `Transition` component. */}
         <Transition
           show={open}
-          afterLeave={()=>{onClose(false);console.log("hi...");}}
+          afterLeave={() => {
+            onClose(false);
+          }}
           enter="transition duration-100 ease-out"
           enterFrom="transform scale-45 opacity-0"
           enterTo="transform scale-100 opacity-100"
           leave="transition duration-75 ease-out"
           leaveFrom="transform scale-100 opacity-100"
-          leaveTo="transform scale-95 opacity-0"        >
+          leaveTo="transform scale-95 opacity-0"
+        >
           {/* Mark this component as `static` */}
           <Popover.Panel static>
-            <div className="fixed bg-gray-500 inset-y-0 right-0 max-w-full pl-10">
-              <div className="bg-gray-100 py-2">
-                <div className="flex-1 px-4 sm:px-6">
-                  <div className="flex items-start justify-between text-base font-medium text-gray-900">
-                    Shopping cart
+            <div className="fixed top-16 right-0 max-w-full pl-10">
+              <div className="bg-gray-100 dark:bg-gray-900 py-2">
+                <div className="flex-1 z-50 px-4 sm:px-6 relative">
+                  <div className="flex items-start justify-between text-lg font-medium text-gray-900 dark:text-gray-200">
+                    Shopping Cart
                     <div className="ml-3 flex h-7 items-center">
                       <button
                         type="button"
@@ -92,11 +96,11 @@ export default function Cart({ open, onClose }) {
                     <div className="flow-root">
                       <ul
                         role="list"
-                        className="-my-6 divide-y overflow-y-auto max-h-96 remove-scroll divide-gray-200"
+                        className="-my-6 divide-y overflow-y-auto max-h-96 remove-scroll"
                       >
                         {products.map((product) => (
-                          <li key={product.id} className="flex py-6">
-                            <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                          <li key={product.id} className="flex py-5">
+                            <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-300 dark:border-gray-300">
                               <img
                                 src={product.imageSrc}
                                 alt={product.imageAlt}
@@ -106,7 +110,7 @@ export default function Cart({ open, onClose }) {
 
                             <div className="ml-4 flex flex-1 flex-col">
                               <div>
-                                <div className="flex justify-between text-base font-medium text-gray-900">
+                                <div className="flex justify-between text-sm font-medium text-gray-900 dark:text-gray-200">
                                   <h3>
                                     <a href={product.href}>{product.name}</a>
                                   </h3>
@@ -124,7 +128,7 @@ export default function Cart({ open, onClose }) {
                                 <div className="flex">
                                   <button
                                     type="button"
-                                    className="font-medium text-indigo-600 hover:text-indigo-500"
+                                    className="font-medium text-indigo-600 hover:text-rose-700"
                                   >
                                     Remove
                                   </button>
@@ -137,8 +141,8 @@ export default function Cart({ open, onClose }) {
                     </div>
                   </div>
                 </div>
-                <div className="border-t border-gray-200 pt-10 pb-2 px-2 sm:px-6">
-                  <div className="flex justify-between text-base font-medium text-gray-900">
+                <div className="pt-10 pb-2 px-2 sm:px-6">
+                  <div className="flex justify-between text-base font-medium text-gray-900 dark:text-gray-200">
                     <p>Subtotal</p>
                     <p>$262.00</p>
                   </div>
@@ -153,6 +157,18 @@ export default function Cart({ open, onClose }) {
                       Checkout
                     </a>
                   </div>
+                </div>
+                <div className="flex justify-center text-center text-sm text-gray-500">
+                  <p>
+                    <button
+                      type="button"
+                      className="font-medium text-indigo-600 hover:text-indigo-500"
+                      onClick={() => setOpen(false)}
+                    >
+                      Open Shopping Cart
+                      <span aria-hidden="true"> &rarr;</span>
+                    </button>
+                  </p>
                 </div>
               </div>
             </div>

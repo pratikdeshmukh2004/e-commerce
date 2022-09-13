@@ -165,7 +165,7 @@ export default function Example({setCart, cartStatus}) {
   const currentTheme = theme === "system" ? systemTheme : theme;
 
   return (
-    <div className="text-gray-800 dark:text-gray-200">
+    <div className="text-gray-800 dark:text-gray-200 fixed w-full z-10">
       {/* Mobile menu */}
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="relative z-40 lg:hidden" onClose={setOpen}>
@@ -571,7 +571,7 @@ export default function Example({setCart, cartStatus}) {
                   )}
                 </div>
                 {/* Cart */}
-                <div onClick={()=>setCart(!cartStatus)} className="ml-4 flow-root lg:ml-6 dark:bg-gray-800 bg-gray-100 p-2 rounded-l">
+                <div onClick={()=>setCart(!cartStatus)} className="ml-4 flow-root lg:ml-6">
                   <a href="#" className="group -m-2 flex items-center p-2">
                     <ShoppingBagIcon
                       className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
