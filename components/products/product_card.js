@@ -8,7 +8,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const product_cart = ({ product }) => {
+const ProductCart = ({ product }) => {
   const [open, setOpen] = useState(false);
   const [selectedColor, setSelectedColor] = useState([]);
   const [selectedSize, setSelectedSize] = useState([]);
@@ -301,4 +301,4 @@ const product_cart = ({ product }) => {
   );
 };
 
-export default product_cart;
+export default ProductCart;
