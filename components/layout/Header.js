@@ -159,7 +159,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Example({setCart, cartStatus}) {
+export default function Example({setCart, cartStatus, cart}) {
   const [open, setOpen] = useState(false);
   const { systemTheme, theme, setTheme } = useTheme();
   const currentTheme = theme === "system" ? systemTheme : theme;
@@ -382,7 +382,7 @@ export default function Example({setCart, cartStatus}) {
                                 open
                                   ? "border-indigo-600 text-indigo-600"
                                   : "border-transparent dark:hover:text-gray-500 hover:text-gray-500",
-                                "relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out"
+                                "relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out outline-none"
                               )}
                             >
                               {category.name}
@@ -574,13 +574,12 @@ export default function Example({setCart, cartStatus}) {
                 <div onClick={()=>setCart(!cartStatus)} className="ml-4 flow-root lg:ml-6">
                   <a href="#" className="group -m-2 flex items-center p-2">
                     <ShoppingBagIcon
-                      className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+                      className={classNames(cartStatus? "text-indigo-600":"text-gray-700","h-6 w-6 flex-shrink-0 group-hover:text-gray-500")}
                       aria-hidden="true"
                     />
-                    <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
-                      0
+                    <span className={classNames(cartStatus? "text-indigo-600":"text-gray-700","ml-2 text-sm font-medium  group-hover:text-gray-800")}>
+                      {cart.length} <span className="border-l-2 pl-1 border-gray-500">₹{cart.reduce((i,j)=>Number(i)+Number(j.price),0)}</span>
                     </span>
-                    <span className="sr-only">items in cart, view bag</span>
                   </a>
                 </div>
               </div>

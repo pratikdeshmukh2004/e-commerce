@@ -8,6 +8,7 @@ import { useTheme } from "next-themes";
 
 export default function Home() {
   const [openCart, setCart] = useState(false);
+  const [cart, addProductCart] = useState([]);
   const products = [
     {
       id: 1,
@@ -16,7 +17,7 @@ export default function Home() {
       imageSrc:
         "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
       imageAlt: "Front of men's Basic Tee in black.",
-      price: "$35",
+      price: "35",
       color: "Black",
       colors: [
         { name: "White", class: "bg-white", selectedClass: "ring-gray-400" },
@@ -35,13 +36,13 @@ export default function Home() {
       ],
     },
     {
-      id: 1,
-      name: "Basic Tee",
+      id: 2,
+      name: "Basic Tee 1",
       href: "#",
       imageSrc:
         "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
       imageAlt: "Front of men's Basic Tee in black.",
-      price: "$35",
+      price: "350",
       color: "Black",
       colors: [
         { name: "White", class: "bg-white", selectedClass: "ring-gray-400" },
@@ -60,13 +61,68 @@ export default function Home() {
       ],
     },
     {
-      id: 1,
-      name: "Basic Tee",
+      id: 3,
+      name: "Basic Tee 2",
       href: "#",
       imageSrc:
         "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
       imageAlt: "Front of men's Basic Tee in black.",
-      price: "$35",
+      price: "3500",
+      color: "Black",
+    },
+    {
+      id: 4,
+      name: "Basic Tee 3",
+      href: "#",
+      imageSrc:
+        "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+      imageAlt: "Front of men's Basic Tee in black.",
+      price: "3555",
+      color: "Black",
+    }, {
+      id: 4,
+      name: "Basic Tee 4",
+      href: "#",
+      imageSrc:
+        "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+      imageAlt: "Front of men's Basic Tee in black.",
+      price: "353",
+      color: "Black",
+    }, {
+      id: 6,
+      name: "Basic Tee 5",
+      href: "#",
+      imageSrc:
+        "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+      imageAlt: "Front of men's Basic Tee in black.",
+      price: "352",
+      color: "Black",
+    }, {
+      id: 99,
+      name: "Basic Tee 6",
+      href: "#",
+      imageSrc:
+        "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+      imageAlt: "Front of men's Basic Tee in black.",
+      price: "352",
+      color: "Black",
+    }, {
+      id: 11,
+      name: "Basic Tee 7",
+      href: "#",
+      imageSrc:
+        "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+      imageAlt: "Front of men's Basic Tee in black.",
+      price: "3",
+      color: "Black",
+    }, {
+      id: 111,
+      name: "Basic Tee 8",
+      href: "#",
+      imageSrc:
+        "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+      imageAlt: "Front of men's Basic Tee in black.",
+      price: "5",
       color: "Black",
     },
   ];
@@ -99,8 +155,8 @@ export default function Home() {
       <Head>
         <title>E-Commerce Website</title>
       </Head>
-      <Header cartStatus={openCart} setCart={setCart} />
-      <Cart open={openCart} onClose={setCart} />
+      <Cart addProductCart={addProductCart} cartProducts={cart} open={openCart} onClose={setCart} />
+      <Header cart={cart} cartStatus={openCart} setCart={setCart} />
       <div>
         <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
           <h2 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-200 text-center">
@@ -109,7 +165,7 @@ export default function Home() {
 
           <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
             {products.map((product, index) => (
-              <Product key={index} product={product} />
+              <Product cart={cart} addProductCart={addProductCart} setCart={setCart} key={index} product={product} />
             ))}
           </div>
         </div>

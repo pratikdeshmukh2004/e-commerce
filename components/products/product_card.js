@@ -8,7 +8,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const ProductCart = ({ product }) => {
+const ProductCart = ({ product, setCart, addProductCart, cart }) => {
   const [open, setOpen] = useState(false);
   const [selectedColor, setSelectedColor] = useState([]);
   const [selectedSize, setSelectedSize] = useState([]);
@@ -30,7 +30,7 @@ const ProductCart = ({ product }) => {
         </div>
         <div className="mt-4 flex justify-between">
           <div>
-            <h3 className="text-sm text-gray-700">
+            <h3 className="text-sm font-bold text-gray-700">
               <a href={product.href}>
                 <span aria-hidden="true" />
                 {product.name}
@@ -38,8 +38,18 @@ const ProductCart = ({ product }) => {
             </h3>
             <p className="mt-1 text-sm text-gray-500">{product.color}</p>
           </div>
-          <p className="text-sm font-medium text-gray-900">{product.price}</p>
+          <p className="text-lg font-medium text-gray-900">₹{product.price}</p>
         </div>
+        <button
+          onClick={() => {
+            setCart(true);
+            addProductCart([...cart,product]);
+          }}
+          type="submit"
+          className={classNames(cart.filter((p)=>p.id == product.id).length?"border":" border-none","mt-5 flex w-full mx-auto items-center justify-center border-indigo-400 bg-gray-200 py-1 px-3 text-base font-medium text-gray-900 hover:text-black hover:bg-gray-400 ")}
+        >
+          Add to cart
+        </button>
       </div>
 
       <Transition.Root show={open} as={Fragment}>
