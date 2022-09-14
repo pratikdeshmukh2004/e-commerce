@@ -79,7 +79,8 @@ export default function Home() {
       imageAlt: "Front of men's Basic Tee in black.",
       price: "3555",
       color: "Black",
-    }, {
+    },
+    {
       id: 4,
       name: "Basic Tee 4",
       href: "#",
@@ -88,7 +89,8 @@ export default function Home() {
       imageAlt: "Front of men's Basic Tee in black.",
       price: "353",
       color: "Black",
-    }, {
+    },
+    {
       id: 6,
       name: "Basic Tee 5",
       href: "#",
@@ -97,7 +99,8 @@ export default function Home() {
       imageAlt: "Front of men's Basic Tee in black.",
       price: "352",
       color: "Black",
-    }, {
+    },
+    {
       id: 99,
       name: "Basic Tee 6",
       href: "#",
@@ -106,7 +109,8 @@ export default function Home() {
       imageAlt: "Front of men's Basic Tee in black.",
       price: "352",
       color: "Black",
-    }, {
+    },
+    {
       id: 11,
       name: "Basic Tee 7",
       href: "#",
@@ -115,7 +119,8 @@ export default function Home() {
       imageAlt: "Front of men's Basic Tee in black.",
       price: "3",
       color: "Black",
-    }, {
+    },
+    {
       id: 111,
       name: "Basic Tee 8",
       href: "#",
@@ -155,17 +160,28 @@ export default function Home() {
       <Head>
         <title>E-Commerce Website</title>
       </Head>
-      <Cart addProductCart={addProductCart} cartProducts={cart} open={openCart} onClose={setCart} />
+      <Cart
+        addProductCart={addProductCart}
+        cartProducts={cart}
+        open={openCart}
+        onClose={setCart}
+      />
       <Header cart={cart} cartStatus={openCart} setCart={setCart} />
       <div>
-        <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+        <div className="mx-auto max-w-2xl py-20 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
           <h2 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-200 text-center">
             New Arrivals
           </h2>
 
           <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
             {products.map((product, index) => (
-              <Product cart={cart} addProductCart={addProductCart} setCart={setCart} key={index} product={product} />
+              <Product
+                cart={cart}
+                addProductCart={addProductCart}
+                setCart={setCart}
+                key={index}
+                product={product}
+              />
             ))}
           </div>
         </div>

@@ -21,9 +21,14 @@ import {
   MagnifyingGlassIcon,
   ShoppingBagIcon,
   XMarkIcon,
+  SunIcon,
+} from "@heroicons/react/24/solid";
+
+import {
+  MoonIcon,
 } from "@heroicons/react/24/outline";
+
 import { useTheme } from "next-themes";
-import Cart from "../orders/cart";
 
 const navigation = {
   categories: [
@@ -159,7 +164,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Example({setCart, cartStatus, cart}) {
+export default function Example({ setCart, cartStatus, cart }) {
   const [open, setOpen] = useState(false);
   const { systemTheme, theme, setTheme } = useTheme();
   const currentTheme = theme === "system" ? systemTheme : theme;
@@ -533,52 +538,52 @@ export default function Example({setCart, cartStatus, cart}) {
                       onClick={() => setTheme("light")}
                       className="ml-4 flow-root lg:ml-6 cursor-pointer hover:bg-gray-400 p-1 rounded-lg dark:bg-gray-800 bg-gray-100"
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="w-6 h-6"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
-                        />
-                      </svg>
+                      <SunIcon className="h-6 w-6" aria-hidden="true" />
                     </button>
                   ) : (
                     <button
                       onClick={() => setTheme("dark")}
                       className="ml-4 flow-root lg:ml-6 cursor-pointer hover:bg-gray-400 p-1 rounded-lg dark:bg-gray-800 bg-gray-100"
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="w-6 h-6"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"
-                        />
-                      </svg>
+                     <MoonIcon className="h-6 w-6" aria-hidden="true" />
                     </button>
                   )}
                 </div>
                 {/* Cart */}
-                <div onClick={()=>setCart(!cartStatus)} className="ml-4 flow-root lg:ml-6">
-                  <a href="#" className="group -m-2 flex items-center p-2">
+                <div
+                  onClick={() => setCart(!cartStatus)}
+                  className="ml-4 flow-root lg:ml-6"
+                >
+                  <a
+                    href="#"
+                    className="group -m-2 flex items-center gap-2 p-2"
+                  >
                     <ShoppingBagIcon
-                      className={classNames(cartStatus? "text-indigo-600":"text-gray-700","h-6 w-6 flex-shrink-0 group-hover:text-gray-500")}
+                      className={classNames(
+                        cartStatus ? "text-indigo-600" : cart.length?"text-gray-600 dark:text-gray-200":"text-rose-600",
+                        "h-6 w-6 flex-shrink-0 group-hover:text-gray-500"
+                      )}
                       aria-hidden="true"
                     />
-                    <span className={classNames(cartStatus? "text-indigo-600":"text-gray-700","ml-2 text-sm font-medium  group-hover:text-gray-800")}>
-                      {cart.length} <span className="border-l-2 pl-1 border-gray-500">₹{cart.reduce((i,j)=>Number(i)+Number(j.price),0)}</span>
+                    <span
+                      className={classNames(
+                        cartStatus ? "text-indigo-600" : "text-gray-400",
+                        "text-lg font-medium  group-hover:text-gray-800"
+                      )}
+                    >
+                      {cart.length ? cart.length : ""}
+                    </span>
+                    <span
+                      className={classNames(
+                        cart.length ? "border-l border-gray-500" : "",
+                        "pl-2 text-lg font-medium  group-hover:text-gray-800",
+                        cartStatus ? "text-indigo-700" : "text-gray-400"
+                      )}
+                    >
+                      {cart.length
+                        ? "₹" +
+                          cart.reduce((i, j) => Number(i) + Number(j.price), 0)
+                        : ""}
                     </span>
                   </a>
                 </div>

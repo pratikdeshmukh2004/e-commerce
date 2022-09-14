@@ -2,7 +2,11 @@ import React from "react";
 import { Fragment, useState } from "react";
 import { Dialog, RadioGroup, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { StarIcon } from "@heroicons/react/20/solid";
+import {
+  ArrowTrendingUpIcon,
+  ShoppingBagIcon,
+  StarIcon,
+} from "@heroicons/react/20/solid";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -19,13 +23,22 @@ const ProductCart = ({ product, setCart, addProductCart, cart }) => {
           <img
             src={product.imageSrc}
             alt={product.imageAlt}
-            className="h-full w-full object-cover object-center lg:h-full lg:w-full"
+            className="h-full w-full object-cover object-center lg:h-full lg:w-full group-hover:opacity-70"
           />
           <div
             onClick={() => setOpen(true)}
-            class="w-4/5 py-1 border border-gray-400 cursor-pointer mx-auto rounded mb-10 opacity-0 group-hover:opacity-70 duration-300 absolute inset-x-0 bottom-0 flex justify-center items-end bg-gray-300 text-gray-800 text-base"
+            class="w-4/5 py-1 border border-gray-400 cursor-pointer mx-auto rounded mb-20 opacity-0 group-hover:opacity-70 duration-300 absolute inset-x-0 bottom-0 flex justify-center items-end bg-gray-300 text-gray-800 text-base"
           >
             Quick View
+          </div>
+          <div
+            onClick={() => {
+              setCart(true);
+              addProductCart([...cart, product]);
+            }}
+            class="w-full group-hover:animate-pulse animate-none py-2 lg:py-0.5 border border-gray-400 cursor-pointer mx-auto rounded opacity-0 group-hover:opacity-70 duration-300 absolute inset-x-0 bottom-0 flex justify-center items-end bg-gray-600 text-gray-50 rounded-t-none text-base"
+          >
+            Add to Cart
           </div>
         </div>
         <div className="mt-4 flex justify-between">
@@ -40,16 +53,16 @@ const ProductCart = ({ product, setCart, addProductCart, cart }) => {
           </div>
           <p className="text-lg font-medium text-gray-900">₹{product.price}</p>
         </div>
-        <button
+        {/* <button
           onClick={() => {
             setCart(true);
             addProductCart([...cart,product]);
           }}
           type="submit"
-          className={classNames(cart.filter((p)=>p.id == product.id).length?"border":" border-none","mt-5 flex w-full mx-auto items-center justify-center border-indigo-400 bg-gray-200 py-1 px-3 text-base font-medium text-gray-900 hover:text-black hover:bg-gray-400 ")}
+          className={classNames(cart.filter((p)=>p.id == product.id).length?"border animate-pulse":" animate-none border-none","mt-5 flex w-fit ml-auto items-center justify-center border-rose-400 bg-gray-200 py-1 px-3 text-base font-medium text-gray-900 hover:text-black hover:bg-gray-400 ")}
         >
-          Add to cart
-        </button>
+          <ShoppingBagIcon className="h-5 w-5"/>
+        </button> */}
       </div>
 
       <Transition.Root show={open} as={Fragment}>
